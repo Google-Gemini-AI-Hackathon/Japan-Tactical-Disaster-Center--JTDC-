@@ -1,0 +1,241 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+
+  /* Custom theme colors from user snippet */
+  --color-on-primary-fixed-variant: #7c2e00;
+  --color-surface-dim: #131313;
+  --color-outline: #aa8a7d;
+  --color-on-error: #690005;
+  --color-on-tertiary: #003911;
+  --color-inverse-on-surface: #313030;
+  --color-on-secondary-container: #f7e6ff;
+  --color-tertiary: #00e55b;
+  --color-primary-fixed: #ffdbcd;
+  --color-surface: #131313;
+  --color-primary-fixed-dim: #ffb596;
+  --color-on-tertiary-fixed: #002107;
+  --color-surface-container-highest: #353534;
+  --color-secondary-fixed-dim: #dfb7ff;
+  --color-on-tertiary-container: #003810;
+  --color-inverse-surface: #e5e2e1;
+  --color-on-surface: #e5e2e1;
+  --color-on-primary: #581e00;
+  --color-on-secondary-fixed: #2d004f;
+  --color-tertiary-fixed: #6bff83;
+  --color-on-primary-fixed: #360f00;
+  --color-surface-bright: #393939;
+  --color-surface-tint: #ffb596;
+  --color-on-secondary: #4b007e;
+  --color-on-tertiary-fixed-variant: #00531b;
+  --color-error-container: #93000a;
+  --color-secondary-container: #9d05ff;
+  --color-primary-container: #ff6600;
+  --color-on-surface-variant: #e3bfb1;
+  --color-surface-container-low: #1c1b1b;
+  --color-surface-container: #201f1f;
+  --color-secondary: #dfb7ff;
+  --color-error: #ffb4ab;
+  --color-surface-container-high: #2a2a2a;
+  --color-surface-variant: #353534;
+  --color-primary: #ffb596;
+  --color-outline-variant: #5a4136;
+  --color-tertiary-fixed-dim: #00e55b;
+  --color-on-background: #e5e2e1;
+  --color-tertiary-container: #00ae43;
+  --color-on-primary-container: #561d00;
+  --color-on-secondary-fixed-variant: #6b00b0;
+  --color-on-error-container: #ffdad6;
+  --color-background: #050505;
+  --color-surface-container-lowest: #0e0e0e;
+  --color-secondary-fixed: #f1daff;
+  --color-inverse-primary: #a33e00;
+
+  /* Custom spacings from user snippet */
+  --spacing-unit: 4px;
+  --spacing-container-max: 1440px;
+  --spacing-margin-desktop: 32px;
+  --spacing-margin-mobile: 16px;
+  --spacing-gutter: 12px;
+}
+
+@layer base {
+  body {
+    @apply bg-[#050505] text-[#e5e2e1] font-mono select-none antialiased;
+    font-feature-settings: "tnum";
+    overflow: hidden;
+  }
+}
+
+/* Custom Scanlines & CRT Grids */
+.nerv-grid-bg {
+  background-image: 
+    linear-gradient(rgba(18, 18, 18, 0.4) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(18, 18, 18, 0.4) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+.scanlines {
+  position: relative;
+  overflow: hidden;
+}
+
+.scanline-overlay {
+  background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+  background-size: 100% 4px, 3px 100%;
+  pointer-events: none;
+}
+
+.scanlines::before {
+  content: " ";
+  display: block;
+  position: absolute;
+  top: 0; left: 0; bottom: 0; right: 0;
+  background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+  z-index: 10;
+  background-size: 100% 4px, 3px 100%;
+  pointer-events: none;
+}
+
+/* Segmented block animations or glowing animations */
+@keyframes pulseGlowOrange {
+  0%, 100% {
+    box-shadow: 0 0 4px rgba(255, 102, 0, 0.2), inset 0 0 2px rgba(255, 102, 0, 0.1);
+    border-color: rgba(255, 102, 0, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 12px rgba(255, 102, 0, 0.5), inset 0 0 6px rgba(255, 102, 0, 0.25);
+    border-color: rgba(255, 102, 0, 0.8);
+  }
+}
+
+@keyframes pulseGlowPurple {
+  0%, 100% {
+    box-shadow: 0 0 4px rgba(157, 0, 255, 0.2), inset 0 0 2px rgba(157, 0, 255, 0.1);
+    border-color: rgba(157, 0, 255, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 12px rgba(157, 0, 255, 0.5), inset 0 0 6px rgba(157, 0, 255, 0.25);
+    border-color: rgba(157, 0, 255, 0.8);
+  }
+}
+
+@keyframes pulseGlowGreen {
+  0%, 100% {
+    box-shadow: 0 0 4px rgba(0, 255, 102, 0.15), inset 0 0 1px rgba(0, 255, 102, 0.1);
+    border-color: rgba(0, 255, 102, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 10px rgba(0, 255, 102, 0.4), inset 0 0 4px rgba(0, 255, 102, 0.2);
+    border-color: rgba(0, 255, 102, 0.7);
+  }
+}
+
+.glow-orange {
+  box-shadow: 0 0 8px rgba(255, 102, 0, 0.4);
+  border: 1px solid #FF6600;
+}
+
+.glow-purple {
+  box-shadow: 0 0 8px rgba(157, 0, 255, 0.4);
+  border: 1px solid #9D00FF;
+}
+
+.glow-green {
+  box-shadow: 0 0 8px rgba(0, 255, 102, 0.4);
+  border: 1px solid #00FF66;
+}
+
+/* Blinking animations */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.blink-fast {
+  animation: blink 0.6s infinite steps(1);
+}
+
+.blink-slow {
+  animation: blink 1.5s infinite ease-in-out;
+}
+
+/* Custom scrollbar following standard & legacy fallbacks */
+.custom-scrollbar {
+  --scrollbar-thumb: #5a4136;
+  --scrollbar-track: #0e0e0e;
+  scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
+  scrollbar-width: thin;
+}
+
+@supports not (scrollbar-color: auto) {
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+  }
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: var(--scrollbar-thumb);
+  }
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: var(--scrollbar-track);
+  }
+}
+
+/* Pixel Borders */
+.pixel-border {
+  position: relative;
+}
+.pixel-border::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border: 1px solid rgba(170, 138, 125, 0.2);
+  pointer-events: none;
+}
+
+/* Strobe and Alert effects */
+@keyframes strobe {
+  0%, 100% { background-color: rgba(157, 5, 255, 0.2); }
+  50% { background-color: transparent; }
+}
+.critical-alert-bg {
+  animation: strobe 1s infinite;
+}
+
+/* Segmented progress classes */
+.segmented-progress {
+  display: flex;
+  gap: 2px;
+}
+.progress-segment {
+  height: 8px;
+  flex: 1;
+  background: #2a2a2a;
+}
+.progress-segment.active {
+  background: #00FF66;
+  box-shadow: 0 0 4px #00FF66;
+}
+
+/* Diagonal stripe pattern for warnings */
+.diagonal-stripes {
+  background: repeating-linear-gradient(
+    45deg,
+    #ff6600,
+    #ff6600 10px,
+    #050505 10px,
+    #050505 20px
+  );
+}
+
+.diagonal-stripes-purple {
+  background: repeating-linear-gradient(
+    45deg,
+    #9d05ff,
+    #9d05ff 10px,
+    #050505 10px,
+    #050505 20px
+  );
+}
