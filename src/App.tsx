@@ -282,11 +282,8 @@ export default function App() {
   const isLight = theme === "light";
 
   return (
-    <div className={`min-h-screen ${isLight ? "bg-[#fbf9f4] text-stone-900" : "bg-background text-[#e5e2e1]"} flex flex-col relative select-none scanlines transition-colors duration-300`}>
+    <div className={`min-h-screen ${isLight ? "bg-[#fbf9f4] text-stone-900" : "bg-[#050505] text-[#e5e2e1]"} flex flex-col relative select-none scanlines transition-colors duration-300`}>
       
-      {/* SCANLINE OVERLAY */}
-      <div className="absolute inset-0 scanline-overlay pointer-events-none z-[60]"></div>
-
       {/* FULL-SCREEN SIREN EVACUATION STROBE COVER */}
       {isSirenActive && (
         <div className="absolute inset-0 z-50 bg-[#9d05ff]/20 animate-pulse pointer-events-none mix-blend-color-burn border-8 border-[#9d05ff] flex items-center justify-center">
@@ -325,7 +322,7 @@ export default function App() {
       )}
 
       {/* HEADER SECTION */}
-      <header className={`border-b border-outline-variant ${isLight ? "bg-[#eae6db] text-stone-900" : "bg-surface text-[#e5e2e1]"} px-4 py-3 flex flex-col md:flex-row md:items-center md:justify-between gap-3 shrink-0 shadow-[0_0_8px_rgba(255,181,150,0.3)] transition-colors duration-300`}>
+      <header className={`border-b-2 border-[#ff6600] ${isLight ? "bg-[#eae6db] text-stone-900" : "bg-[#121212] text-[#e5e2e1]"} px-4 py-3 flex flex-col md:flex-row md:items-center md:justify-between gap-3 shrink-0 transition-colors duration-300`}>
         <div className="flex items-center gap-3">
           {/* JTDC Styled Orange Title */}
           <h1 className="text-xl md:text-2xl font-extrabold text-[#ff6600] tracking-wider uppercase font-mono flex items-center gap-2">
@@ -343,7 +340,7 @@ export default function App() {
           {/* Light Mode / Dark Mode Toggle Button */}
           <button
             onClick={() => setTheme(isLight ? "dark" : "light")}
-            className={`flex items-center gap-1.5 px-2.5 py-1 border ${isLight ? "border-stone-400 bg-stone-100 hover:bg-stone-200 text-stone-800" : "border-outline-variant bg-surface hover:bg-surface-container-high text-gray-300"} font-mono font-bold text-[10px] tracking-wider uppercase transition-all cursor-pointer`}
+            className={`flex items-center gap-1.5 px-2.5 py-1 border ${isLight ? "border-stone-400 bg-stone-100 hover:bg-stone-200 text-stone-800" : "border-[#393939] bg-black hover:bg-[#121212] text-gray-300"} font-mono font-bold text-[10px] tracking-wider uppercase transition-all cursor-pointer`}
             title="Toggle Theme Mode"
           >
             {isLight ? (
@@ -360,7 +357,7 @@ export default function App() {
           </button>
 
           {/* Ticking Clock Readout */}
-          <div className={`flex items-center gap-2 border ${isLight ? "border-stone-400 bg-[#fbf9f4]" : "border-outline-variant bg-surface-container-lowest"} px-2.5 py-1 text-gray-300`}>
+          <div className={`flex items-center gap-2 border ${isLight ? "border-stone-400 bg-[#fbf9f4]" : "border-[#393939] bg-black"} px-2.5 py-1 text-gray-300`}>
             <Clock className="w-3.5 h-3.5 text-[#ff6600]" />
             <span className={`font-bold ${isLight ? "text-stone-900" : "text-white"} tracking-widest`}>
               {currentTime.toLocaleTimeString("ja-JP", { hour12: false })} UTC
@@ -373,7 +370,7 @@ export default function App() {
             <select
               value={activeSector}
               onChange={handleSectorChange}
-              className={`${isLight ? "bg-[#fbf9f4] border-stone-400 text-stone-900" : "bg-surface-container-lowest border border-outline-variant text-[#e5e2e1]"} text-[11px] px-2 py-1 focus:outline-none focus:border-[#ff6600] font-bold rounded-none`}
+              className={`${isLight ? "bg-[#fbf9f4] border-stone-400 text-stone-900" : "bg-black border border-[#393939] text-[#e5e2e1]"} text-[11px] px-2 py-1 focus:outline-none focus:border-[#ff6600] font-bold rounded-none`}
             >
               <option value="TOKYO-3_SECTOR_01">TOKYO-3 :: SECTOR_01</option>
               <option value="SHIBUYA_SECTOR_02">SHIBUYA :: SECTOR_02</option>
@@ -384,7 +381,7 @@ export default function App() {
           </div>
 
           {/* System status ready dot */}
-          <div className={`flex items-center gap-1.5 border ${isLight ? "border-stone-400 bg-[#fbf9f4]" : "border-outline-variant bg-surface-container-lowest"} px-2.5 py-1 shrink-0`}>
+          <div className={`flex items-center gap-1.5 border ${isLight ? "border-stone-400 bg-[#fbf9f4]" : "border-[#393939] bg-black"} px-2.5 py-1 shrink-0`}>
             <span className={`w-2 h-2 rounded-full animate-pulse ${activeAlert ? "bg-[#9d05ff]" : "bg-[#00FF66]"}`} />
             <span className={`text-[10px] font-bold ${activeAlert ? "text-[#9d05ff]" : "text-[#00FF66]"}`}>
               {activeAlert ? "THREAT ACTIVE" : "SYSTEM ONLINE"}
@@ -394,10 +391,10 @@ export default function App() {
       </header>
 
       {/* MAIN TWO-COLUMN DASHBOARD GRID */}
-      <div className={`flex-1 grid grid-cols-1 lg:grid-cols-[240px_1fr] divide-x ${isLight ? "divide-stone-300 bg-[#fbf9f4]" : "divide-outline-variant/30"} overflow-hidden`}>
+      <div className={`flex-1 grid grid-cols-1 lg:grid-cols-[240px_1fr] divide-x ${isLight ? "divide-stone-300 bg-[#fbf9f4]" : "divide-[#ff6600]/40"} overflow-hidden`}>
         
         {/* LEFT COLUMN: Command Unit Sidebar Navigation */}
-        <aside className={`${isLight ? "bg-[#eae6db] border-r border-stone-300 divide-stone-300" : "bg-surface-container-lowest divide-outline-variant/30"} p-4 flex flex-col justify-between divide-y transition-colors duration-300`}>
+        <aside className={`${isLight ? "bg-[#eae6db] border-r border-stone-300 divide-stone-300" : "bg-[#0c0c0c] divide-[#1c1b1b]"} p-4 flex flex-col justify-between divide-y transition-colors duration-300`}>
           
           {/* Navigation controls */}
           <div className="space-y-4 pb-4">
@@ -458,13 +455,13 @@ export default function App() {
             </button>
             
             {showRealEarthquakes && (
-              <div className={`p-2 border max-h-36 overflow-y-auto text-[8px] font-mono space-y-1 custom-scrollbar ${isLight ? "bg-white border-stone-300 text-stone-600" : "bg-surface-container-lowest border-outline-variant text-gray-400"}`}>
-                <div className={`border-b pb-1 font-bold text-[9px] ${isLight ? "text-stone-900 border-stone-200" : "text-white border-outline-variant/30"}`}>LATEST JMA TELEMETRY:</div>
+              <div className={`p-2 border max-h-36 overflow-y-auto text-[8px] font-mono space-y-1 custom-scrollbar ${isLight ? "bg-white border-stone-300 text-stone-600" : "bg-black/90 border-[#393939] text-gray-400"}`}>
+                <div className={`border-b pb-1 font-bold text-[9px] ${isLight ? "text-stone-900 border-stone-200" : "text-white border-[#2a2a2a]"}`}>LATEST JMA TELEMETRY:</div>
                 {realEarthquakes.length === 0 ? (
                   <div className="animate-pulse">STREAMING DATA...</div>
                 ) : (
                   realEarthquakes.map((eq: any, idx: number) => (
-                    <div key={idx} className={`border-b pb-1 mb-1 ${isLight ? "border-stone-100" : "border-outline-variant/10"}`}>
+                    <div key={idx} className={`border-b pb-1 mb-1 ${isLight ? "border-stone-100" : "border-[#111]"}`}>
                       <div className="text-[#ff6600] font-bold">EPICENTER: {eq.earthquake?.hypocenter?.name || "Unknown"}</div>
                       <div>TIME: {new Date(eq.time || Date.now()).toLocaleTimeString()}</div>
                       <div>SHINDO SC: {(eq.earthquake?.maxScale / 10) || "N/A"}</div>
@@ -488,7 +485,7 @@ export default function App() {
             {activeAlert && (
               <button
                 onClick={handleClearAlert}
-                className={`w-full py-2 text-[9px] font-bold tracking-widest text-center uppercase border ${isLight ? "bg-stone-100 border-stone-300 text-stone-700 hover:bg-stone-200" : "bg-surface hover:bg-surface-container-high border-outline-variant text-gray-400"}`}
+                className={`w-full py-2 text-[9px] font-bold tracking-widest text-center uppercase border ${isLight ? "bg-stone-100 border-stone-300 text-stone-700 hover:bg-stone-200" : "bg-gray-900/50 hover:bg-gray-800 border-gray-700 text-gray-400"}`}
               >
                 RESET_THREAT_READY
               </button>
@@ -611,12 +608,12 @@ export default function App() {
       </div>
 
       {/* FOOTER SYSTEM STATUS TELEMETRIES */}
-      <footer className={`border-t border-outline-variant ${isLight ? "bg-[#eae6db] text-stone-600 border-stone-300" : "bg-surface-container-low text-gray-500"} text-[10px] px-4 py-2 flex flex-wrap justify-between items-center gap-3 shrink-0 transition-colors duration-300`}>
+      <footer className={`border-t-2 border-[#ff6600] ${isLight ? "bg-[#eae6db] text-stone-600 border-stone-300" : "bg-black text-gray-500"} text-[10px] px-4 py-2 flex flex-wrap justify-between items-center gap-3 shrink-0 transition-colors duration-300`}>
         <div className="flex flex-wrap gap-x-6 gap-y-1 font-mono font-bold">
           <div>UPTIME: <span className={isLight ? "text-stone-900" : "text-white"}>1422:12:04</span></div>
           <div>DATA_FLOW: <span className={isLight ? "text-stone-900" : "text-white"}>4.2 TB/S</span></div>
-          <div>NODES: <span className="text-tertiary">1,024 ACTIVE</span></div>
-          <div>TERMINAL_ACCESS: <span className="text-tertiary">SECURE</span></div>
+          <div>NODES: <span className="text-[#00FF66]">1,024 ACTIVE</span></div>
+          <div>TERMINAL_ACCESS: <span className="text-[#00FF66]">SECURE</span></div>
           <div>API_DOCS: <span className={`${isLight ? "text-stone-800" : "text-gray-400"} font-bold underline cursor-pointer`}>p2pquake_v2_history</span></div>
         </div>
         <div className={`text-right ${isLight ? "text-stone-500" : "text-gray-600"} font-mono text-[9px] font-bold`}>
